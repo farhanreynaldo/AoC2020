@@ -51,5 +51,6 @@ def contiguous_set(numbers, window=25):
             j += 1
         i += 1
 
+
 assert contiguous_set(sample_num, 5) == 62
 print(contiguous_set(day09, 25))
