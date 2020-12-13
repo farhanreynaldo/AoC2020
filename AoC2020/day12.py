@@ -8,23 +8,23 @@ F11"""
 
 
 def solve(raw):
-    instructions = [(e[0], int(e[1:])) for e in raw.split('\n')]
+    instructions = [(e[0], int(e[1:])) for e in raw.split("\n")]
     x, y = 0, 0
-    heading = 0 # East as 0, 90, 180, 270 for S, W, N respectively
+    heading = 0  # East as 0, 90, 180, 270 for S, W, N respectively
     for action, value in instructions:
-        if action == 'E':
+        if action == "E":
             x += value
-        elif action == 'S':
+        elif action == "S":
             y -= value
-        elif action == 'W':
+        elif action == "W":
             x -= value
-        elif action == 'N':
+        elif action == "N":
             y += value
-        elif action == 'R':
+        elif action == "R":
             heading = (heading + value) % 360
-        elif action == 'L':
+        elif action == "L":
             heading = (heading - value) % 360
-        elif action == 'F':
+        elif action == "F":
             if heading == 0:
                 x += value
             elif heading == 90:
@@ -35,33 +35,36 @@ def solve(raw):
                 y += value
     return abs(x) + abs(y)
 
+
 assert solve(SAMPLE) == 25
-day12 = open('input/day12.txt').read()
+day12 = open("input/day12.txt").read()
 print(solve(day12))
 
+
 def solve2(raw):
-    instructions = [(e[0], int(e[1:])) for e in raw.split('\n')]
+    instructions = [(e[0], int(e[1:])) for e in raw.split("\n")]
     x, y = 0, 0
     wpx, wpy = 10, 1
     for action, value in instructions:
-        if action == 'E':
+        if action == "E":
             wpx += value
-        elif action == 'S':
+        elif action == "S":
             wpy -= value
-        elif action == 'W':
+        elif action == "W":
             wpx -= value
-        elif action == 'N':
+        elif action == "N":
             wpy += value
-        elif action == 'R':
+        elif action == "R":
             for _ in range(value // 90):
                 wpx, wpy = wpy, -wpx
-        elif action == 'L':
+        elif action == "L":
             for _ in range(value // 90):
                 wpx, wpy = -wpy, wpx
-        elif action == 'F':
+        elif action == "F":
             x += value * wpx
             y += value * wpy
     return abs(x) + abs(y)
+
 
 assert solve2(SAMPLE) == 286
 print(solve2(day12))
