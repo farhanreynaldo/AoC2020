@@ -42,6 +42,7 @@ def possible_memories(mem, mask):
     res = ["X" if m == "X" else str(int(m) or int(d)) for d, m in zip(bin_val, mask)]
     x_idx = [i for i, val in enumerate(res) if val == "X"]
     memories = []
+    # impute X from every possible 0, 1 configurations
     for var in product(range(2), repeat=len(x_idx)):
         res_temp = res.copy()
         for x, val in zip(x_idx, var):
