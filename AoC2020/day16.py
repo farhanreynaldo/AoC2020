@@ -52,17 +52,6 @@ assert error_rate(SAMPLE) == 71
 day16 = open("input/day16.txt").read()
 print(error_rate(day16))
 
-
-# def clean_columns_nearby(raw):
-#     rules_raw, ticket_raw, nearby_raw = raw.strip().split("\n\n")
-#     rules = [rule for _, rules in parse_rules(rules_raw).items() for rule in rules]
-#     valid_lines = []
-#     for line in nearby_raw.strip().split('\n')[1:]:
-#         if all(any(int(ticket) in rule for rule in rules) for ticket in line.split(',')):
-#             valid_lines.append([int(ticket) for ticket in line.split(',')])
-#     return zip(*valid_lines)
-
-
 def valid_tickets(tickets, rules):
     invalid_tickets = [
         line
