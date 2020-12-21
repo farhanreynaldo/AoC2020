@@ -26,7 +26,6 @@ def parse_foods(raw):
 
 def find_allergent(foods):
     allergents = {allergent for food in foods for allergent in food.allergents}
-    allergent_ingredients = set()
     allergent_dict = defaultdict(set)
     for allergent in allergents:
         food_ingredients = [
@@ -35,7 +34,6 @@ def find_allergent(foods):
         intersect = reduce(
             lambda food1, food2: set(food1) & set(food2), food_ingredients
         )
-        allergent_ingredients.update(intersect)
         allergent_dict[allergent] = set(intersect)
     return allergent_dict
 
@@ -72,5 +70,6 @@ def arrange_ingredients(raw):
 
 assert count_non_allergent(SAMPLE) == 5
 day21 = open("input/day21.txt").read()
-assert arrange_ingredients(SAMPLE) == 'mxmxvkd,sqjhc,fvjkl'
+print(count_non_allergent(day21))
+assert arrange_ingredients(SAMPLE) == "mxmxvkd,sqjhc,fvjkl"
 print(arrange_ingredients(day21))
