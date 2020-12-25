@@ -67,21 +67,24 @@ def find_black_tiles(raw):
 def count_black(black_tiles):
     return len(black_tiles)
 
+
 def neighbors(tile):
     x, y, z = tile
     for dx, dy, dz in DIRECTION_MAP.values():
-        yield x+dx, y+dy, z+dz
+        yield x + dx, y + dy, z + dz
+
 
 def step(black_tiles):
     nbrs_tiles = Counter()
     for tile in black_tiles:
         for nbrs in neighbors(tile):
             nbrs_tiles[nbrs] += 1
-    
+
     return {
         tile
         for tile, count in nbrs_tiles.items()
-        if (tile in black_tiles and 1 <= count <= 2) or (tile not in black_tiles and count == 2)
+        if (tile in black_tiles and 1 <= count <= 2)
+        or (tile not in black_tiles and count == 2)
     }
 
 
